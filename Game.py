@@ -1,4 +1,5 @@
 
+
 class GameBoard:
     """Инициализация игрового поля"""
     def __init__(self, width: int, height: int):
@@ -24,7 +25,6 @@ class GameBoard:
         return True
 
     def move_piece_on_board(self, piece, x, y):
-        list_of_pieces_on_board = [] # в дальнейшем хочу использовать для создания блокчейна карты
         if self.check_to_add_piece(piece, x, y):
             for row in range(piece.height):
                 for columns in range(piece.width):
@@ -33,12 +33,21 @@ class GameBoard:
             return True
         return False
 
+    # def delete_occupied_rows_and_columns(self):
+    #     for row in range(self.height):
+    #         for columns in range(board.width):
+    #             if set(row) == 1 and len(set(row)):
+    #                 for x in row:
+    #                     x == 0
 
-    # def find_piece_on_board_right_now(self):
+
+
+    # def find_piece_on_board_right_now(self, piece, x, y):
     #     list_of_pieces_on_board = []
-    #     if self.move_piece_on_board(self):
-    #         list_of_pieces_on_board.append(piece + x + y)
-    #     print(list_of_pieces_on_board)
+    #     if self.move_piece_on_board(piece, x, y):
+    #         list_of_pieces_on_board.append(piece)
+    #     return print(list_of_pieces_on_board)
+
 
 
 class GamePiece:
@@ -81,5 +90,10 @@ board.move_piece_on_board(piece1, 5, 5)
 piece2 = manager.pieces['f']
 board.move_piece_on_board(piece2, 1, 2)
 
-board.print_board()
+piece3 = manager.pieces['i']
+board.move_piece_on_board(piece3, 7, 3)
 
+piece4 = manager.pieces['k']
+board.move_piece_on_board(piece4, 4, 0)
+
+board.print_board()
