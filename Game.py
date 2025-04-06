@@ -3,8 +3,8 @@
 class GameBoard:
     """Инициализация игрового поля"""
     def __init__(self, width: int, height: int):
-        self.height = height
         self.width = width
+        self.height = height
         self.board = [[0 for _ in range(self.width)] for _ in range(self.height)]
 
     def print_board(self):
@@ -33,22 +33,32 @@ class GameBoard:
             return True
         return False
 
-    # def delete_occupied_rows_and_columns(self):
-    #     for row in range(self.height):
-    #         for columns in range(board.width):
-    #             if set(row) == 1 and len(set(row)):
-    #                 for x in row:
-    #                     x == 0
+    def delete_occupied_rows_and_columns(self):
 
+        def remove_full_string(input_list):
+            new_list = []
+            for row in input_list:
+                if sum(row) == self.width:
+                    row = [0 for _ in range(self.width)]
+                    new_list.append(row)
+                else:
+                    new_list.append(row)
+            return new_list
 
+        board_with_deleted_full_rows = remove_full_string(self.board) # удаляю заполненные строки
+        zipped_board_with_deleted_full_rows = zip(*board_with_deleted_full_rows)
+        transposed_board_with_deleted_full_rows = [list(_) for _ in zipped_board_with_deleted_full_rows] # здесь получил транспонированную матрицу
+        board_with_deleted_full_columns = remove_full_string(transposed_board_with_deleted_full_rows) # удалил заполненные строки из транспонированной матрицы
+        transposed_board_with_deleted_full_columns = [list(_) for _ in zip(* board_with_deleted_full_columns)] # получил двумерный массив
+        self.board = transposed_board_with_deleted_full_columns
+
+        return self.board
 
     # def find_piece_on_board_right_now(self, piece, x, y):
     #     list_of_pieces_on_board = []
     #     if self.move_piece_on_board(piece, x, y):
     #         list_of_pieces_on_board.append(piece)
     #     return print(list_of_pieces_on_board)
-
-
 
 class GamePiece:
     """Инициализация фигур"""
@@ -80,20 +90,32 @@ class PieceManager:
 
 
 board = GameBoard(10, 10) # создаю моё поле
-#board.print_board()
+
 manager = PieceManager()
-#manager.print_piece('a')
 
-piece1 = manager.pieces['h']
-board.move_piece_on_board(piece1, 5, 5)
 
-piece2 = manager.pieces['f']
-board.move_piece_on_board(piece2, 1, 2)
+piece1 = manager.pieces['n']
+board.move_piece_on_board(piece1, 0, 0)
+board.move_piece_on_board(piece1, 0, 5)
+board.move_piece_on_board(piece1, 1, 0)
+board.move_piece_on_board(piece1, 1, 5)
+
 
 piece3 = manager.pieces['i']
 board.move_piece_on_board(piece3, 7, 3)
 
 piece4 = manager.pieces['k']
 board.move_piece_on_board(piece4, 4, 0)
+
+
+# piece5 = manager.pieces['o']
+# board.move_piece_on_board(piece5, 0, 9)
+# board.move_piece_on_board(piece5,5, 9)
+
+
+board.print_board()
+print("\n")
+
+board.delete_occupied_rows_and_columns()
 
 board.print_board()
