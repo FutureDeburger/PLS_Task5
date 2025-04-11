@@ -89,17 +89,31 @@ class PieceManager:
 
 
 
+# class GameCellState(Enum):
+#     OPEN = 0
+#     CLOSE = 1
+#
+# class GameState(Enum):
+#     PLAY = 0
+#     WIN = 1
+#     LOSE = 2
+
+
+
 board = GameBoard(10, 10) # создаю моё поле
 
 manager = PieceManager()
 
 
 piece1 = manager.pieces['n']
-board.move_piece_on_board(piece1, 0, 0)
-board.move_piece_on_board(piece1, 0, 5)
-board.move_piece_on_board(piece1, 1, 0)
-board.move_piece_on_board(piece1, 1, 5)
+#board.move_piece_on_board(piece1, 0, 0)
+#board.move_piece_on_board(piece1, 0, 5)
+#board.move_piece_on_board(piece1, 1, 0)
+#board.move_piece_on_board(piece1, 1, 5)
 
+piece2 = manager.pieces['g']
+#board.move_piece_on_board(piece2, 0, 0)
+#board.move_piece_on_board(piece2, 6, 0)
 
 piece3 = manager.pieces['i']
 board.move_piece_on_board(piece3, 7, 3)
@@ -108,9 +122,9 @@ piece4 = manager.pieces['k']
 board.move_piece_on_board(piece4, 4, 0)
 
 
-# piece5 = manager.pieces['o']
-# board.move_piece_on_board(piece5, 0, 9)
-# board.move_piece_on_board(piece5,5, 9)
+piece5 = manager.pieces['o']
+board.move_piece_on_board(piece5, 7, 1)
+#board.move_piece_on_board(piece5,5, 9)
 
 
 board.print_board()
